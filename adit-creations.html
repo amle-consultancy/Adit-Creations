@@ -153,7 +153,7 @@ tailwind.config = {
             <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                 Adit Creations
             </h1>
-            <p class="text-xl sm:text-2xl lg:text-3xl font-light mb-8 text-gold">
+            <p class="text-2xl sm:text-2xl lg:text-3xl font-light mb-8 text-gold">
                 Transforming Spaces with Art and Precision
             </p>
             <p class="max-w-2xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed mb-12 text-white/90">
@@ -516,7 +516,7 @@ tailwind.config = {
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
                 <div class="lg:col-span-3" data-aos="fade-right">
                     <div class="bg-white p-10 sm:p-14 shadow-2xl rounded-2xl border-t-4 border-gold">
-                        <form class="space-y-7">
+                        <form class="space-y-7" id="contactForm" action="https://formspree.io/f/mnnoezwr" method= "POST" >
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
                                     <label for="name" class="block text-sm font-semibold text-charcoal mb-3 uppercase tracking-wide">Full Name</label>
@@ -558,6 +558,10 @@ tailwind.config = {
                                     class="w-full bg-gold text-white py-5 text-base font-bold uppercase tracking-wider hover:bg-opacity-90 transition-all duration-300 btn-gold-hover rounded-lg shadow-lg">
                                 Send Your Inquiry
                             </button>
+                             <!-- Hidden thank you message -->
+                            <p id="thankyouMessage" class="hidden text-center text-gold font-semibold mt-4">
+                                ✅ Thank you! Your message has been sent successfully.
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -673,6 +677,29 @@ tailwind.config = {
                 navbar.classList.add('shadow-sm');
                 navbar.classList.remove('shadow-xl');
             }
+        });
+
+
+        const form = document.getElementById("contactForm");
+        const thankyouMessage = document.getElementById("thankyouMessage");
+
+        form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Stop default redirect behavior
+
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+        });
+
+        if (response.ok) {
+            form.reset();
+            thankyouMessage.classList.remove("hidden");
+            thankyouMessage.scrollIntoView({ behavior: "smooth" });
+        } else {
+            alert("⚠️ Something went wrong. Please try again later.");
+        }
         });
     </script>
 </body>
