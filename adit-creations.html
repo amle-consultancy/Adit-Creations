@@ -11,23 +11,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'display': ['Playfair Display', 'serif'],
-                        'body': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cream': '#F5F1E8',
-                        'warm-gray': '#A8A39D',
-                        'charcoal': '#2C2C2C',
-                        'gold': '#C9A961',
-                    }
-                }
-            }
-        }
-    </script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontSize: {
+        sm: '0.75rem',
+        base: '0.875rem',
+        lg: '1rem',
+        xl: '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.75rem',
+        '4xl': '2rem',
+        '5xl': '2.25rem',
+        '6xl': '2.5rem',
+        '7xl': '2.75rem',
+      },
+      fontFamily: {
+        'display': ['Playfair Display', 'serif'],
+        'body': ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'cream': '#F5F1E8',
+        'warm-gray': '#A8A39D',
+        'charcoal': '#2C2C2C',
+        'gold': '#C9A961',
+      }
+    }
+  }
+}
+</script>
+
 
     <style>
         @keyframes header-drop {
@@ -61,6 +74,24 @@
         .testimonial-card {
             animation: fade-slide-up 0.6s ease-out forwards;
         }
+        html {
+            font-size: 14px; /* down from Tailwind’s 16px default */
+        }
+
+        /* Responsive fine-tuning */
+        @media (max-width: 768px) {
+            html {
+                font-size: 13px;
+            }
+        }
+
+        /* Slightly smaller headings globally */
+        h1, .text-7xl, .text-6xl, .text-5xl { font-size: 4rem !important; }
+        h2, .text-4xl { font-size: 2.5rem !important; }
+        h3, .text-3xl { font-size: 2rem !important; }
+        h4, .text-2xl { font-size: 1.75rem !important; }
+        p, .text-lg, .text-base { font-size: 1.25rem !important; }
+        small, .text-sm { font-size: 1rem !important; }
     </style>
 </head>
 <body class="bg-cream text-charcoal font-body overflow-x-hidden">
